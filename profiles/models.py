@@ -18,6 +18,13 @@ class Profile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    def get_friends(self):
+        return self.friends.all()
+
+    def get_friends_no(self):
+        # número de amigos
+        return self.friends.all().count()
+
     def __str__(self) -> str:
         return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
 

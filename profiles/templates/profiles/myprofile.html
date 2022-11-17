@@ -5,5 +5,26 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Meu perfil</h1>
+    <h1>Meu perfil {{ profile }}</h1>
+    <hr>
+    <img src="{{ profile.avatar.url }}" alt="">
+    <br>
+    {{ profile.avatar.url }}
+    <br>
+    {{ profile.avatar }}
+    <br>
+    {{ profile.first_name|title }} {{ profile.last_name|title }}
+    <br>
+    {{ profile.bio }}
+    <br>
+    {{ profile.contry }}
+    <br>
+    {{ profile.get_friends_no }}
+    <br>
+    {% for friend in profile.get_friends %}
+        <ul>
+            <li>{{ friend }}</li>
+        </ul>
+    {% endfor %}
+    <br>
 {% endblock content %}
