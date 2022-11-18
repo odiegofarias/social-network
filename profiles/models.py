@@ -25,6 +25,29 @@ class Profile(models.Model):
         # número de amigos
         return self.friends.all().count()
 
+    # Accesando de forma reversa pelo related_name do Post/author
+    def get_post_no(self):
+        return self.posts.all().count()
+
+    # Accesando de forma reversa pelo related_name do Post/author
+    def get_all_authors_posts(self):
+        return self.posts.all()
+
+    def get_likes_given_no(self):
+        likes = self.like_set.all()
+        total_liked = 0
+        for item in likes:
+            if item.value == 'Like':
+                total_liked += 1
+        return total_liked
+    
+    def get_likes_recieved_no(self):
+        posts = self.posts.all()
+        total_liked = 0
+        for item in posts:
+            total_liked += item.liked.all().count()
+        return total_liked
+
     def __str__(self) -> str:
         return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
 

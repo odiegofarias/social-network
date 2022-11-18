@@ -5,26 +5,61 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Meu perfil {{ profile }}</h1>
-    <hr>
-    <img src="{{ profile.avatar.url }}" alt="">
-    <br>
-    {{ profile.avatar.url }}
-    <br>
-    {{ profile.avatar }}
-    <br>
-    {{ profile.first_name|title }} {{ profile.last_name|title }}
-    <br>
-    {{ profile.bio }}
-    <br>
-    {{ profile.contry }}
-    <br>
-    {{ profile.get_friends_no }}
-    <br>
-    {% for friend in profile.get_friends %}
-        <ul>
-            <li>{{ friend }}</li>
-        </ul>
-    {% endfor %}
-    <br>
+<div class="ui segment">
+    {% if confirm %}
+        <div class="ui green message">Your profile has been updated</div>
+    {% endif %}
+    <h3>Meu perfil: {{request.user}}</h3>
+    <div class="ui grid">
+        <div class='row'>
+            <div class='six wide column'>
+                <img class="ui medium rounded image" src={{profile.avatar.url}}>
+                <div class="row mt-5">
+                    <button class='ui secondary button' id='modal-btn'>Update your profile</button>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <table class="ui table">
+                    <tbody>
+                        <tr>
+                            <td>Nome</td>
+                            <td>{{ profile.user }}</td>
+                        </tr>
+                        <tr>
+                            <td>Primeiro nome</td>
+                            <td>{{ profile.first_name|title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sobrenome</td>
+                            <td>{{ profile.last_name|title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Bio</td>
+                            <td>{{ profile.bio }}</td>
+                        </tr>
+                        <tr>
+                            <td>Número de amigos</td>
+                            <td>{{ profile.get_friends_no }}</td>
+                        </tr>
+                        <tr>
+                            <td>Número de postagens</td>
+                            <td>{{ profile.get_post_no }}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Número de likes dados</td>
+                            <td>{{ profile.get_likes_given_no }}</td>
+                        </tr>
+                        <tr>
+                            <td>Número de likes recebidos</td>
+                            <td>{{ profile.get_likes_recieved_no }}</td>
+                        </tr>
+                                     
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
