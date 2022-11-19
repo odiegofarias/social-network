@@ -33,17 +33,21 @@
                         </div>
                         <form action="" method="POST" class="ui form">
                             {% csrf_token %}
+                            <input type="hidden" name="post_id" value={{ post.id }}>
                             {{ c_form }}
-                            <button type="submit" class="ui primary button">Comente</button>
+                            <button type="submit" class="ui primary button" name="submit_c_form">Comente</button>
                         </form>
                     </div>
                 {% endfor %}
             </div>
             <div class="five wide column">
+                {% if post_added %}
+                    <div class="ui green message">Post adicionado</div>
+                {% endif %}
                 <form action="" method="POST" class="ui form" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ p_form }}
-                    <button type="submit" class="ui button positive">Postar</button>
+                    <button type="submit" class="ui button positive" name="submit_p_form">Postar</button>
                 </form>
             </div>
         </div>
