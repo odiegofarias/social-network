@@ -33,6 +33,7 @@ class Profile(models.Model):
     def get_all_authors_posts(self):
         return self.posts.all()
 
+    # Aqui, como estamos utilizando o "_set", retorna um queryset. Por isso, precisamos fazer um for nos likes
     def get_likes_given_no(self):
         likes = self.like_set.all()
         total_liked = 0
