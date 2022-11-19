@@ -24,10 +24,11 @@
                                     {% if profile not in post.liked.all %}
                                         <i class="thumbs up icon"></i>&nbsp;Like
                                     {% else %}
-                                        <i class="thumbs down icon"></i>&nbsp;Unlike
+                                        <i class="thumbs down icon"></i>&nbsp;Deslike
                                     {% endif %}
-                                    
+
                                 </button>
+                                &nbsp;{{ post.num_likes }}
                             </form>
                         </div>
                     </div>
