@@ -31,6 +31,13 @@
                                 &nbsp;{{ post.num_likes }}
                             </form>
                         </div>
+                        <div>
+                            {% if post.comment_set.all %}
+                                {% for comment in post.comment_set.all %}
+                                    <p>{{ comment.body }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                         <form action="" method="POST" class="ui form">
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value={{ post.id }}>
