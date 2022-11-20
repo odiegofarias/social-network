@@ -18,14 +18,15 @@ class ProfileManager(models.Manager):
             if rel.status == 'accepted':
                 accepted.add(rel.receiver)
                 accepted.add(rel.sender)
-        
-        available = [profile for profile in profiles if profile not in accepted]
+
+        available = [
+            profile for profile in profiles if profile not in accepted]
 
         return available
 
     def get_all_profiles(self, me):
         profiles = Profile.objects.all().exclude(user=me)
-        
+
         return profiles
 
 
@@ -68,7 +69,7 @@ class Profile(models.Model):
             if item.value == 'Like':
                 total_liked += 1
         return total_liked
-    
+
     def get_likes_recieved_no(self):
         posts = self.posts.all()
         total_liked = 0
@@ -100,18 +101,19 @@ STATUS_CHOICES = (
     ('accepted', 'accepted')
 )
 
-class RelationshipManager(models.Manager):
-    def invatations_received(self, receiver):
-        qs = Relationship.objects.filter(receiver=receiver, status='send')
-        
-        return qs
 
-    
+class RelationshipManager(models.Manager):
+    def invitations_received(self, receiver):
+        qs = Relationship.objects.filter(receiver=receiver, status='send')
+
+        return qs
 
 
 class Relationship(models.Model):
-    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sender')
-    receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='receiver')
+    sender = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='receiver')
     status = models.CharField(max_length=8, choices=STATUS_CHOICES)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)

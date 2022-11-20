@@ -1,8 +1,8 @@
-from django.db.models.signals import post_save, pre_delete
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from .models import Profile, Relationship
 
+from .models import Profile, Relationship
 
 """
     Aqui temos a criação automática de Perfil com base no USER do Django.
