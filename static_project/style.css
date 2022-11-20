@@ -20,6 +20,10 @@ body {
     margin-top: 5px !important;
 }
 
+.w-big {
+    width: 200px !important;
+}
+
 .bwhite-lg {
     background-color: transparent !important;
 }
