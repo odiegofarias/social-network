@@ -14,10 +14,8 @@ def post_comment_create_and_list_view(request):
     # Valores iniciais 
     p_form = PostModelForm()
     c_form = CommentModelForm()
-    post_added = False # Mensgaem exibida quando o usuário posta.
 
     if 'submit_p_form' in request.POST:
-        print(request.POST)
         p_form = PostModelForm(request.POST, request.FILES)
         if p_form.is_valid():
             instance = p_form.save(commit=False)
@@ -25,12 +23,10 @@ def post_comment_create_and_list_view(request):
             instance.save()
             # reseta o form
             p_form = PostModelForm()
-            post_added = True
 
         return redirect('posts:main-post-view')
 
     if 'submit_c_form' in request.POST:
-        print(request.POST)
         c_form = CommentModelForm(request.POST)
         if c_form.is_valid():
             instance = c_form.save(commit=False)
@@ -47,7 +43,6 @@ def post_comment_create_and_list_view(request):
         'profile': profile,
         'p_form': p_form,
         'c_form': c_form,
-        'post_added': post_added,
     }
 
     return render(request, 'posts/main.html', context)
@@ -109,5 +104,5 @@ class PostUpdateView(UpdateView):
             return super().form_valid(form)
         # Caso a pessoa que está editando não seja o autor, lança um erro
         else:
-            form.add_error(None, "Você precisa ser o dono do post para atualizar.")
+            form.add_error(None, "Você precisa ser o autor para atualizar esse post.")
             return super().form_invalid(form)

@@ -23,7 +23,8 @@
             <form action="" method="POST" class="ui form">
                 {% csrf_token %}
                 <p>Tem certeza de que deseja apagar o post?</p>
-                <button type="submit">Deletar</button>
+                <a href="{% url 'posts:main-post-view' %}" class="ui primary button">Cancelar</a>
+                <button type="submit" class="ui negative button">Deletar</button> 
             </form>
         </div>
     {% endif %}
