@@ -11,7 +11,7 @@ def post_comment_create_and_list_view(request):
     # Valores iniciais 
     p_form = PostModelForm()
     c_form = CommentModelForm()
-    post_added = False
+    post_added = False # Mensgaem exibida quando o usuário posta.
 
     if 'submit_p_form' in request.POST:
         print(request.POST)

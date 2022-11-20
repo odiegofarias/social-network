@@ -6,7 +6,7 @@ class PostModelForm(forms.ModelForm):
     content = forms.CharField(
         label="",
         widget=forms.Textarea(
-            attrs={'rows': 2}
+            attrs={'rows': 5}
         ))
     class Meta:
         model = Post
