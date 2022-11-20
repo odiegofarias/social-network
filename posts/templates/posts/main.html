@@ -13,12 +13,12 @@
             <div class="content">
                 <div class="right floated meta">
                 <div class="ui grid">
-                    {% comment %} <div class="row">
+                    <div class="row">
                         {% if request.user == post.author.user %}
                             <a href="{% url 'posts:post-update' post.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
                             <a href="{% url 'posts:post-delete' post.pk %}"><button class="ui button bwhite-lg ">Delete</button></a>
                         {% endif %}
-                    </div> {% endcomment %}
+                    </div>
                 </div>
                     
                 </div>
