@@ -1,3 +1,9 @@
 $(document).ready(function(){
-    console.log('Funcionando... da base')
+    $('#modal-btn').click(function(){
+        console.log('Funcionando')
+        $('.ui.modal')
+        .modal('show')
+        ;
+    })
+    $('.ui.dropdown').dropdown()
 })
