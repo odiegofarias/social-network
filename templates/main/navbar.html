@@ -1,6 +1,10 @@
 {% url 'home-view' as path_to_home %}
 {% url 'posts:main-post-view' as path_to_posts %}
 {% url 'profiles:my-profile-view' as path_to_myprofile %}
+{% url 'profiles:my-invites-view' as path_to_myinvites %}
+{% url 'profiles:invites-profile-view' as path_to_inviteto %}
+{% url 'profiles:all-profiles-view' as path_to_allprofiles %}
+
 
 <div class="ui inverted menu nav mb-7">
     <div class="ui container">
@@ -19,13 +23,13 @@
                 <div class="ui floating dropdown icon button teal"> Amigos
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a href="" class="item">
+                        <a href="{{ path_to_allprofiles }}" class="{% if request.path == path_to_allprofiles %}active{% endif %} item">
                             Todos os perfis
                         </a>
-                        <a href="" class="item">
+                        <a href="{{ path_to_inviteto }}" class="{% if request.path == path_to_inviteto %}active{% endif %} item">
                             Convites enviados
                         </a>
-                        <a href="" class="item">
+                        <a href="{{ path_to_myinvites }}" class="{% if request.path == path_to_myinvites %}active{% endif %} item">
                             Convites recebidos
                         </a>
                     </div>
