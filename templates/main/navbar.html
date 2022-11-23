@@ -30,7 +30,8 @@
                             Convites enviados
                         </a>
                         <a href="{{ path_to_myinvites }}" class="{% if request.path == path_to_myinvites %}active{% endif %} item">
-                            Convites recebidos
+                            Convites recebidos &nbsp; <div class="ui blue horizontal label">{{ invites_num }}</div>
+
                         </a>
                     </div>
                 </div>
@@ -46,7 +47,8 @@
               </div>
           
               <a href="{{ path_to_myprofile }}" class="{% if request.path == path_to_myprofile %}active{% endif %} item">
-                   {{ request.user|title }}
+                <img src="{{ picture.url }}" alt="" class="ui avatar image">&nbsp;
+                {{ request.user|title }}
               </a>
   
               <a href="" class="ui item">
