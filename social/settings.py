@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     # myApps
     'profiles',
     'posts',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,3 +139,11 @@ LOGIN_URL = '/admin/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django debug toolbar
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
