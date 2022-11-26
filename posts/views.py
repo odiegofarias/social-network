@@ -13,9 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here. 
 @login_required
 def post_comment_create_and_list_view(request):
-    posts = Post.objects.prefetch_related('liked')
+    posts = Post.objects.prefetch_related('liked').select_related('author')
     profile = Profile.objects.get(user=request.user)
-
     # Valores iniciais 
     p_form = PostModelForm()
     c_form = CommentModelForm()
@@ -59,7 +58,7 @@ def like_unlike_post(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')
         post_obj = Post.objects.get(id=post_id)
-        profile = Profile.objects.select_related('user').get(user=user)
+        profile = Profile.objects.get(user=user)
 
         # Verifica se o perfil já deu Like na postagem(ManyToManyField)
         if profile in post_obj.liked.all():

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from posts.models import Post
 
 # Create your views here.
 
@@ -66,7 +67,7 @@ def reject_invitation(request):
 @login_required
 def invites_profiles_list_view(request):
     user = request.user
-    qs = Profile.objects.get_all_profiles_to_invite(user)
+    qs = Profile.objects.prefetch_related('friends').get_all_profiles_to_invite(user)
 
     context = {
         'qs': qs,
@@ -175,3 +176,5 @@ def remove_from_friends(request):
         return redirect(request.META.get('HTTP_REFERER'))
 
     return redirect('profiles:my-profile-view')
+
+
