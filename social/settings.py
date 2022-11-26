@@ -147,6 +147,10 @@ MEDIA_ROOT = BASE_DIR / 'static_cdn' / 'media_root'
 # LOGIN_URL = '/admin/'
 LOGIN_REDIRECT_URL = '/posts'
 
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_UNIQUE = True
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
