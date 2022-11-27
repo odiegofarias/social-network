@@ -15,4 +15,5 @@ urlpatterns = [
     path('my-invites/accepted/', views.accept_invitation, name='accept-invite'),
     path('my-invites/rejected/', views.reject_invitation, name='reject-invite'),
     path('<slug>/', views.ProfileDetailView.as_view(), name='profile-detail-view'),
+    path('register/', views.register_form_view, name='register'),
 ]

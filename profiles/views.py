@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from posts.models import Post
+from .forms import RegisterForm
 
 # Create your views here.
 
@@ -176,5 +176,12 @@ def remove_from_friends(request):
         return redirect(request.META.get('HTTP_REFERER'))
 
     return redirect('profiles:my-profile-view')
+
+
+
+def register_form_view(request):
+    form = RegisterForm()
+
+    return render(request, 'profiles/registro.html', {'form': form})
 
 
