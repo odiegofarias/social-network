@@ -22,7 +22,8 @@ class RegisterForm(forms.ModelForm):
             attrs={
                 'placeholder': 'Digite seu usuário'
             }
-        )
+        ),
+        help_text=('Digite seu usuário')
     )
 
     email = forms.EmailField(
@@ -53,25 +54,16 @@ class RegisterForm(forms.ModelForm):
             'password',
         ]
     
-    def clean(self):
-        cleaned_data = super().clean()
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
 
-        password = cleaned_data.get('password')
-        password2 = cleaned_data.get('password2')
+        if not password2:
+            raise forms.ValidationError('Você precisa confirmar sua senha')
+        if password1 != password2:
+            raise forms.ValidationError('As senhas não são iguais.')
 
-        if password != password2:
-            password_confirmation_error = ValidationError(
-                'As senhas são diferentes',
-                code='Invalid'
-            )
-
-            raise ValidationError({
-                'password': password_confirmation_error,
-                'password2': [
-                    password_confirmation_error,
-                    # Colocarei uma lista de erros futuramente
-                ]
-            })
+        return password2
 
     def clean_email(self):
         email = self.cleaned_data.get('email', '')

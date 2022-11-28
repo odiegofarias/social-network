@@ -9,7 +9,18 @@
         <div class="six wide column">
             <form action="{% url 'conta:register-view' %}" method="POST" class="ui form">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% for field in form %}
+
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>                
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <p>{{ field.help_text }}</p>
+                    {% endif %}
+
+                    {{ field.errors }}
+                {% endfor %}
+               
                 <button type="submit" class="ui button primary">Registrar</button>
             </form>
         </div>

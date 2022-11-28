@@ -16,7 +16,8 @@ def register_view(request):
 
             return redirect('conta:login-view')
 
-    form = RegisterForm()
+    else:
+        form = RegisterForm()
 
     context = {'form': form}
 
