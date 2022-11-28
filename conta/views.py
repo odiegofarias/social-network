@@ -1,12 +1,26 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 
 def register_view(request):
-    return HttpResponse('Register')
+    template = 'conta/register_user.html'
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(user.password)
+            user.save()
+
+            return redirect('conta:login-view')
+
+    form = RegisterForm()
+
+    context = {'form': form}
+
+    return render(request, template, context)
 
 
 def login_view(request):
@@ -43,13 +57,6 @@ def login_view(request):
 
 
 def logout_view(request):
-    if not request.POST:
-        return redirect('conta:login-view')
-    
-    if request.POST.get('username') != request.user.username:
-        return redirect('conta:login-view')
-
-    messages.success(request, 'Logout feito com sucesso')
     logout(request)
 
     return redirect('conta:login-view')

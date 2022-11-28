@@ -5,7 +5,14 @@
 {% endblock title %}
 
 {% block content %}
-    
+    <div class="ui grid">
+        <div class="six wide column">
+            <form action="{% url 'conta:register-view' %}" method="POST" class="ui form">
+                {{ form.as_p }}
+                <button type="submit" class="ui button primary">Registrar</button>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
 
 

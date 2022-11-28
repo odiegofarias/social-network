@@ -46,19 +46,22 @@
               </form>
               </div>
           
-              <a href="{{ path_to_myprofile }}" class="{% if request.path == path_to_myprofile %}active{% endif %} item">
-                <img src="{{ picture.url }}" alt="" class="ui avatar image">&nbsp;
-                {{ request.user|title }}
-              </a>
-  
-              <a href="{% url 'conta:logout-view' %}" class="ui item">
-                  Logout
-              </a>
+                {% if user.is_authenticated %}
+                    <a href="{{ path_to_myprofile }}" class="{% if request.path == path_to_myprofile %}active{% endif %} item">
+                        <img src="{{ picture.url }}" alt="" class="ui avatar image">&nbsp;
+                        {{ request.user|title }}
+                    </a>
+        
+                    <a href="{% url 'conta:logout-view' %}" class="ui item" method="POST">
+                        Logout
+                    </a>
+                    
+                {% endif %}
           {% else %}
             <a href="{% url 'conta:login-view' %}" class="ui item">
                 Login
             </a>
-            <a href="" class="ui item">
+            <a href="{% url 'conta:register-view' %}" class="ui item">
                 Signup
             </a>
           {% endif %}
